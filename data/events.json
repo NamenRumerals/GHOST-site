@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Operation Iron Veil",
+    "date": "2026-06-01",
+    "shortDesc": "A joint mechanized push to retake the Severin sector.",
+    "fullDesc": "Full lore writeup for Operation Iron Veil goes here.",
+    "divisionTags": ["69th-mech", "666th-rangers"],
+    "coverImage": "",
+    "imageFolder": "gallery/events/operation-iron-veil/"
+  },
+  {
+    "name": "The Hollow Front",
+    "date": "2026-05-18",
+    "shortDesc": "HiveBreakers hold the line against a Terminid surge.",
+    "fullDesc": "Full lore writeup for The Hollow Front goes here.",
+    "divisionTags": ["hivebreakers", "gtr"],
+    "coverImage": "",
+    "imageFolder": "gallery/events/the-hollow-front/"
+  },
+  {
+    "name": "Silent Judgement",
+    "date": "2026-05-02",
+    "shortDesc": "Grey Owls and Pale Riders run a deep recon strike.",
+    "fullDesc": "Full lore writeup for Silent Judgement goes here.",
+    "divisionTags": ["taskforce-27", "pale-riders"],
+    "coverImage": "",
+    "imageFolder": "gallery/events/silent-judgement/"
+  }
+]

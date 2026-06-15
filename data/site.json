@@ -1,0 +1,31 @@
+{
+  "factionName": "G.H.O.S.T.",
+  "fullName": "Galactic Helldivers Operations Strike Taskforce",
+  "motto": "No Warning | No Mercy | No Survivors",
+  "discordInvite": "https://discord.gg/your-invite",
+  "tiktok": "https://www.tiktok.com/@ghost",
+  "about": "G.H.O.S.T. is a Helldivers community forged for Managed Democracy. Seven specialized divisions operate as one strike taskforce — from mechanized armor to trauma response — coordinating operations across the galaxy. Whether you are a seasoned operative or a fresh recruit, there is a place for you in the ranks.",
+  "stats": [
+    { "label": "Active Members", "value": "2,000+" },
+    { "label": "Divisions", "value": "7" },
+    { "label": "Founded", "value": "2024" },
+    { "label": "Operations", "value": "100+" }
+  ],
+  "socials": {
+    "main": { "label": "G.H.O.S.T.", "tiktok": "https://www.tiktok.com/@ghost" },
+    "divisions": [
+      { "slug": "69th-mech", "label": "69th M3CH Company", "tiktok": "" },
+      { "slug": "39th-hellblast", "label": "39th Hell-Blast Company", "tiktok": "" },
+      { "slug": "taskforce-27", "label": "Taskforce 27: Grey Owls", "tiktok": "" },
+      { "slug": "hivebreakers", "label": "HiveBreakers", "tiktok": "" },
+      { "slug": "pale-riders", "label": "Pale Riders", "tiktok": "" },
+      { "slug": "gtr", "label": "G.H.O.S.T. Trauma Response", "tiktok": "" },
+      { "slug": "666th-rangers", "label": "666th Recoilless Rangers", "tiktok": "" }
+    ]
+  },
+  "bootSequence": {
+    "baseDelay": 1800,
+    "jitter": 600,
+    "barLength": 10
+  }
+}

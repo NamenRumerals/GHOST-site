@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G.H.O.S.T. — Galactic Helldivers Operations Strike Taskforce</title>
+  <meta name="description" content="G.H.O.S.T. — a Helldivers community of seven specialized divisions. No Warning. No Mercy. No Survivors." />
+
+  <link rel="icon" href="Assets/G.H.O.S.T---metallic_r2.png" />
+
+  <!-- Fonts: Orbitron (headings) + Share Tech Mono (body/terminal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <!-- ============ BOOT SEQUENCE OVERLAY ============ -->
+  <div class="boot" id="boot">
+    <div class="boot__log" id="boot-log"></div>
+    <button class="boot__skip" id="boot-skip">SKIP ▸</button>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <a class="nav__brand" href="index.html">
+      <img src="Assets/G.H.O.S.T---metallic_r2.png" alt="G.H.O.S.T." />
+      <span>G.H.O.S.T.</span>
+    </a>
+
+    <ul class="nav__links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav__dropdown">
+        <button class="nav__dropdown-toggle" aria-haspopup="true">Divisions ▾</button>
+        <div class="nav__dropdown-menu" id="divisions-menu"><!-- filled by JS --></div>
+      </li>
+      <li><a href="lore.html">Lore</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="staff.html">Staff</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+
+    <a class="btn-join" data-discord target="_blank" rel="noopener">Join Us</a>
+
+    <button class="nav__burger" id="nav-burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ============ HERO — TACTICAL COMMAND DISPLAY ============ -->
+  <header class="hero" id="hero">
+    <canvas class="hero__stars" id="hero-stars"></canvas>
+    <svg class="hero__orbits" id="hero-orbits">
+      <defs>
+        <filter id="hero-bloom" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="3" result="b" />
+          <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+    </svg>
+    <div class="hero__core"><img src="Assets/G.H.O.S.T---flat_r2.png" alt="G.H.O.S.T." /></div>
+    <div class="hero__nodes" id="hero-nodes"></div>
+
+    <div class="hero__brackets"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i></div>
+    <div class="hero__readout">G.H.O.S.T. TACTICAL DISPLAY<br />STATUS: <b>ONLINE</b><br />DIVISIONS: <b>07</b></div>
+    <div class="hero__scan"></div>
+    <div class="hero__vig"></div>
+    <div class="hero__title">
+      <h1>G.H.O.S.T.</h1>
+      <p>Galactic Helldivers Operations Strike Taskforce</p>
+    </div>
+    <div class="hero__hint">Click a division to explore ▾</div>
+  </header>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <h2 class="section-title">About G.H.O.S.T.</h2>
+      <div class="divider"></div>
+      <p class="about__text" id="about-text">Loading…</p>
+      <p class="about__motto" id="about-motto"></p>
+    </div>
+  </section>
+
+  <!-- ============ LATEST EVENTS ============ -->
+  <section class="section events" id="events">
+    <div class="section-inner">
+      <h2 class="section-title">Latest Operations</h2>
+      <p class="section-sub">Recent activity across the taskforce</p>
+      <div class="events__grid" id="events-grid"></div>
+      <div class="events__more">
+        <a class="btn-join" href="events.html">View All Events</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS + SOCIALS ============ -->
+  <section class="section stats" id="stats">
+    <div class="section-inner">
+      <h2 class="section-title">By the Numbers</h2>
+      <div class="divider"></div>
+      <div class="stats__grid" id="stats-grid"></div>
+
+      <p class="socials__title">Follow the Divisions</p>
+      <div class="socials__grid" id="socials-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="Assets/G.H.O.S.T_white-version.png" alt="G.H.O.S.T." />
+        <p class="footer__motto" id="footer-motto"></p>
+      </div>
+      <div class="footer__nav">
+        <h4>Navigate</h4>
+        <a href="index.html">Home</a>
+        <a href="lore.html">Lore</a>
+        <a href="events.html">Events</a>
+        <a href="staff.html">Staff</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+      <div class="footer__nav">
+        <h4>Connect</h4>
+        <a data-discord target="_blank" rel="noopener">Discord</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      © <span id="footer-year"></span> <span id="footer-faction">G.H.O.S.T.</span> — All rights reserved. For Managed Democracy.
+    </div>
+  </footer>
+
+  <!-- ============ DIVISION MODAL ============ -->
+  <div class="modal" id="division-modal" role="dialog" aria-modal="true">
+    <div class="modal__box" id="modal-box">
+      <div class="modal__glow"></div>
+      <button class="modal__close" id="modal-close" aria-label="Close">×</button>
+      <img class="modal__logo" id="modal-logo" src="" alt="" />
+      <div class="modal__name" id="modal-name"></div>
+      <div class="modal__motto" id="modal-motto"></div>
+      <p class="modal__oneliner" id="modal-oneliner"></p>
+      <a class="modal__btn" id="modal-btn" href="#">View Division</a>
+    </div>
+  </div>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script src="js/boot.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/hero.js"></script>
+</body>
+</html>

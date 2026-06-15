@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hero B — Cinematic Deep Space</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#05060a; --hl:#a8c060; --txt:#d8e0b8; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);font-family:'Share Tech Mono',monospace;color:var(--txt);overflow:hidden}
+  .hero{position:relative;width:100vw;height:100vh;overflow:hidden;background:#05060a}
+  .neb{position:absolute;inset:0;z-index:1;
+    background:
+      radial-gradient(60% 50% at 78% 22%, rgba(58,40,110,.55) 0%, transparent 60%),
+      radial-gradient(55% 50% at 18% 82%, rgba(40,78,46,.45) 0%, transparent 60%),
+      radial-gradient(40% 40% at 50% 50%, rgba(80,96,40,.18) 0%, transparent 70%),
+      #05060a;}
+  canvas.stars{position:absolute;inset:0;z-index:2}
+  .planet{position:absolute;z-index:2;width:46vh;height:46vh;right:-10vh;top:-12vh;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #2a3a18, #131a0c 55%, #070a06 75%);
+    box-shadow:inset -18px -10px 50px rgba(0,0,0,.7), 0 0 90px rgba(120,150,60,.18);opacity:.9}
+  .lines{position:absolute;inset:0;z-index:3;pointer-events:none}
+
+  .center{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);z-index:6;text-align:center;width:max-content}
+  .center .glow{position:relative;width:min(26vh,260px);height:min(26vh,260px);margin:0 auto}
+  .center .glow::before{content:"";position:absolute;inset:-40%;border-radius:50%;
+    background:radial-gradient(circle, rgba(168,192,96,.30), transparent 68%);animation:breathe 6s ease-in-out infinite}
+  @keyframes breathe{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+  .center .glow img{position:relative;width:100%;height:100%;object-fit:contain;
+    filter:drop-shadow(0 0 24px rgba(168,192,96,.5))}
+  .center h1{margin-top:18px;font-family:'Orbitron',sans-serif;font-weight:800;
+    font-size:clamp(2rem,5vw,3.6rem);letter-spacing:.34em;color:#fff;text-shadow:0 0 30px rgba(168,192,96,.55)}
+  .center p{margin-top:10px;letter-spacing:.32em;text-transform:uppercase;font-size:.76rem;color:var(--hl)}
+
+  .sat{position:absolute;z-index:5;text-align:center;cursor:pointer}
+  .sat .ring{border-radius:50%;display:grid;place-items:center;margin:0 auto;
+    background:radial-gradient(circle, rgba(0,0,0,.4), transparent 70%);
+    filter:drop-shadow(0 0 14px var(--c));transition:transform .3s}
+  .sat img{width:100%;height:100%;object-fit:contain}
+  .sat span{display:block;margin-top:7px;font-family:'Orbitron',sans-serif;font-size:10px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--txt)}
+  .sat:hover .ring{transform:scale(1.1)}
+  .sat .inner{animation:drift var(--d,7s) ease-in-out infinite}
+  @keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  .vig{position:absolute;inset:0;z-index:7;pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 58%, rgba(0,0,0,.6) 100%)}
+  .flare{position:absolute;z-index:4;top:20%;right:24%;width:2px;height:160px;pointer-events:none;
+    background:linear-gradient(rgba(168,192,96,.0),rgba(168,192,96,.5),rgba(168,192,96,0));
+    transform:rotate(28deg);filter:blur(1px)}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="neb"></div>
+    <canvas class="stars"></canvas>
+    <div class="planet"></div>
+    <div class="flare"></div>
+    <svg class="lines" id="lines"></svg>
+
+    <div class="center" id="center">
+      <div class="glow"><img src="../Assets/G.H.O.S.T---flat_r2.png" alt="G.H.O.S.T." /></div>
+      <h1>G.H.O.S.T.</h1>
+      <p>Galactic Helldivers Operations Strike Taskforce</p>
+    </div>
+
+    <div class="vig"></div>
+  </div>
+
+  <script src="_shared.js"></script>
+  <script>
+    startStarfield(document.querySelector('canvas.stars'), { density: 1.3, color:'#cfe0a0', drift: 0.5 });
+
+    // hand-placed satellites with depth (size + opacity) for a cinematic scatter
+    const layout = [
+      { i:0, x:24, y:24, s:78, o:1   },
+      { i:1, x:80, y:40, s:64, o:.9  },
+      { i:2, x:88, y:74, s:54, o:.8  },
+      { i:3, x:62, y:84, s:72, o:1   },
+      { i:4, x:14, y:60, s:60, o:.85 },
+      { i:5, x:34, y:82, s:50, o:.7  },
+      { i:6, x:10, y:38, s:70, o:1   }
+    ];
+    const hero = document.querySelector('.hero');
+    const svg = document.getElementById('lines');
+    const cx = innerWidth/2, cy = innerHeight*0.43;
+    layout.forEach((L,k) => {
+      const d = GHOST_DIVISIONS[L.i];
+      const px = innerWidth * L.x/100, py = innerHeight * L.y/100;
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',cx); line.setAttribute('y1',cy);
+      line.setAttribute('x2',px); line.setAttribute('y2',py);
+      line.setAttribute('stroke', d.color); line.setAttribute('stroke-width','0.6');
+      line.setAttribute('opacity','0.18'); svg.appendChild(line);
+
+      const sat = document.createElement('div');
+      sat.className='sat';
+      sat.style.left = L.x+'%'; sat.style.top = L.y+'%';
+      sat.style.transform = 'translate(-50%,-50%)';
+      sat.style.opacity = L.o;
+      sat.style.setProperty('--c', d.color);
+      sat.innerHTML = `<div class="inner" style="--d:${6+k*0.5}s"><div class="ring" style="width:${L.s}px;height:${L.s}px"><img src="${d.logo}" style="width:${L.s-12}px;height:${L.s-12}px"></div><span>${d.name}</span></div>`;
+      hero.appendChild(sat);
+    });
+  </script>
+</body>
+</html>
