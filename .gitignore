@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor/IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Local-only folders
+planning/
+mockups/
+sessions/
+.claude/
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+*.bak
